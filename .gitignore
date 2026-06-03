@@ -1,0 +1,8 @@
+venv/
+.env
+faiss_index/
+index.faiss
+chunks.pkl
+__pycache__/
+*.pyc
+.DS_Store
