@@ -3,6 +3,21 @@ from embedder import build_index
 from retriever import answer_question
 import os
 
+import hmac
+
+def check_password():
+    if "password_correct" not in st.session_state:
+        st.text_input("Enter password", type="password", key="password")
+        if st.button("Login"):
+            if hmac.compare_digest(st.secrets["APP_PASSWORD"], st.session_state["password"]):
+                st.session_state.password_correct = True
+                st.rerun()
+            else:
+                st.error("Wrong password")
+        st.stop()
+
+check_password()
+
 st.set_page_config(
     page_title=" AI Research Assistant",
     page_icon="🤖",
